@@ -1,13 +1,13 @@
 const inquirer = require("inquirer");
 const cTable = require("console.table");
-const mysql = require('mysql2');
+const mysql = require("mysql2");
 
-const connection = mysql.createConnection( {
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: '',
-    database: 'employees_db'
+const app = express();
+
+const db = mysql.createConnection({
+  host: "localhost",
+  //   port: 3306,   IS this right?...........................................
+  user: "root",
+  password: "Ogctp0906@",
+  database: "employees_db",
 });
-
-

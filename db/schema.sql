@@ -4,44 +4,24 @@ CREATE DATABASE employees_db;
 
 USE employees_db;
 
-SHOW DATABASES;
-
 CREATE TABLE
     department (
         id NOT NULL AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(30) NOT NULL
     );
 
--- CREATE TABLE role (
+CREATE TABLE
+    role (
+        id NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        title VARCHAR(30) NOT NULL,
+        salary DECIMAL,
+        FOREIGN KEY (role_id) REFERENCES department(id)
+    );
 
---  id NOT NULL AUTO_INCREMENT PRIMARY KEY,
-
---  title VARCHAR(30) NOT NULL,
-
---  salary INT,
-
---  FOREIGN KEY (role_id)
-
---  REFERENCES department(id)
-
--- );
-
---  CREATE TABLE employee (
-
---   id NOT NULL AUTO_INCREMENT PRIMARY KEY,
-
---   first_name VARCHAR(30) NOT NULL,
-
---   last_name VARCHAR(30) NOT NULL,
-
---   FOREIGN KEY (role_id)
-
---   REFERENCES department(id)
-
---   FOREIGN KEY (manager_id)
-
---   REFERENCES role(id)
-
---  );
-
-SELECT DATABASE();
+CREATE TABLE
+    employee (
+        id NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        first_name VARCHAR(30) NOT NULL,
+        last_name VARCHAR(30) NOT NULL,
+        FOREIGN KEY (role_id) REFERENCES department(id) FOREIGN KEY (manager_id) REFERENCES role(id)
+    );
