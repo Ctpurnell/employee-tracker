@@ -25,3 +25,5 @@ CREATE TABLE
         last_name VARCHAR(30) NOT NULL,
         FOREIGN KEY (role_id) REFERENCES department(id) FOREIGN KEY (manager_id) REFERENCES role(id)
     );
+
+SHOW TABLES();
