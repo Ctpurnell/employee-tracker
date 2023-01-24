@@ -1,42 +1,79 @@
 const inquirer = require("inquirer");
 const cTable = require("console.table");
 const mysql = require("mysql2");
-const express = require("express");
-
-const PORT = process.env.PORT || 3001;
-const app = express();
+require("dotenv").config();
 
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "Ogctp0906@",
+  password: process.env.DB_PW,
   database: "employees_db",
 });
 
-inquirer.prompt([
-  {
-    type: "input",
-    name: "Departments",
-    message: "View All Departments",
-  },
-  {
-    type: "input",
-    name: "newDepartments",
-    message: "Add Department",
-  },
-  {
-    type: "input",
-    name: "Roles",
-    message: "View All Roles",
-  },
-  {
-    type: "input",
-    name: "newRoles",
-    message: "Add Role",
-  },
-  {
-    type: "input",
-    name: "Employees",
-    message: "View all Employees",
-  },
-]);
+connection.connect((err) => {
+  if (err) {
+    console.log(err);
+  }
+  menuOptions();
+});
+function menuOptions() {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "menu",
+        message: "What would you like to do?",
+        choices: [
+          "View All Departments",
+          "Add Department",
+          "View All Roles",
+          "Add Role",
+          "View all Employees",
+          "Add an Employee",
+          "Update an Employee Role",
+        ],
+      },
+    ])
+    .then((answers) => {
+      console.log(answers);
+      if (answers.menu === "View All Departments") {
+        viewDept();
+      } else if (answers.menu === "Add Department") {
+        addDept();
+      }
+    });
+}
+function viewDept() {
+  connection.query("SELECT * FROM department", (err, res) => {
+    if (err) {
+      console.log(err);
+    }
+    console.table(res);
+    menuOptions();
+  });
+}
+//adds a dept into the database
+function addDept() {
+  inquirer
+    .prompt([
+      {
+        type: "number",
+        name: "id",
+        message: "What is the id for your department?",
+      },
+      {
+        type: "input",
+        name: "name",
+        message: "What is the name of your department?",
+      },
+    ])
+    .then((answers) => {
+      connection.query("INSERT INTO department SET ?", answers, (err, res) => {
+        if (err) {
+          console.log(err);
+        }
+        console.table(res);
+        menuOptions();
+      });
+    });
+}

@@ -30,4 +30,4 @@ CREATE TABLE
         PRIMARY KEY (id)
     );
 
-SHOW TABLES();
+SHOW TABLES;
