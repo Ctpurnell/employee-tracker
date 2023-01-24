@@ -35,11 +35,13 @@ function menuOptions() {
       },
     ])
     .then((answers) => {
-      console.log(answers);
+      // console.log(answers);
       if (answers.menu === "View All Departments") {
         viewDept();
       } else if (answers.menu === "Add Department") {
         addDept();
+      } else if (answers.menu === "View All Roles") {
+        viewRole();
       }
     });
 }
@@ -52,6 +54,16 @@ function viewDept() {
     menuOptions();
   });
 }
+function viewRole() {
+  connection.query("SELECT * FROM role", (err, res) => {
+    if (err) {
+      console.log(err);
+    }
+    console.table(res);
+    menuOptions();
+  });
+}
+
 //adds a dept into the database
 function addDept() {
   inquirer
