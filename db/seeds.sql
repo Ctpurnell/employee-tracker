@@ -13,13 +13,13 @@ VALUES (0001, "Sales"),
 
 
 INSERT INTO role (id, title, salary, department_id)
-VALUES (0001, "Sales Lead", 100000, 0001),
-       (0002, "Salesperson", 80000, 0002),
-       (0003, "Lead Engineer", 150000, 0003),
-       (0004, "Software Engineer", 120000, 0004),
-       (0005, "Account Manager", 160000, 0005),
-       (0006, "Accountant", 125000, 0006),
-       (0007, "Leagl Team Lead", 250000, 0007);
+VALUES (0001, "Sales Lead", 100000),
+       (0002, "Salesperson", 80000),
+       (0003, "Lead Engineer", 150000),
+       (0004, "Software Engineer", 120000),
+       (0005, "Account Manager", 160000),
+       (0006, "Accountant", 125000),
+       (0007, "Leagl Team Lead", 250000);
 
 
 

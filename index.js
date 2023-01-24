@@ -40,11 +40,14 @@ function menuOptions() {
         viewDept();
       } else if (answers.menu === "Add Department") {
         addDept();
-      } else if (answers.menu === "View All Roles") {
-        viewRole();
+      } else if (answers.menu === "View All Employees") {
+        viewEmp();
+      } else if (answers.menu === "Add an Employee") {
+        addEmp();
       }
     });
 }
+//shows department table
 function viewDept() {
   connection.query("SELECT * FROM department", (err, res) => {
     if (err) {
@@ -54,8 +57,9 @@ function viewDept() {
     menuOptions();
   });
 }
-function viewRole() {
-  connection.query("SELECT * FROM role", (err, res) => {
+//shows  table
+function viewEmp() {
+  connection.query("SELECT * FROM employee", (err, res) => {
     if (err) {
       console.log(err);
     }
@@ -81,6 +85,32 @@ function addDept() {
     ])
     .then((answers) => {
       connection.query("INSERT INTO department SET ?", answers, (err, res) => {
+        if (err) {
+          console.log(err);
+        }
+        console.table(res);
+        menuOptions();
+      });
+    });
+}
+
+//adds role to the database
+function addEmp() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "name",
+        message: "What is the first name of the Employee?",
+      },
+      {
+        type: "input",
+        name: "number",
+        message: "What is the last name of the Employee?",
+      },
+    ])
+    .then((answers) => {
+      connection.query("INSERT INTO employee SET ?", answers, (err, res) => {
         if (err) {
           console.log(err);
         }
