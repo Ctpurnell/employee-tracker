@@ -14,6 +14,11 @@ connection.connect((err) => {
   if (err) {
     console.log(err);
   }
+  console.log("=================================================");
+  console.log("");
+  console.log("               EMPLOYEE TRACKER                  ");
+  console.log("");
+  console.log("=================================================");
   menuOptions();
 });
 function menuOptions() {
@@ -48,8 +53,10 @@ function menuOptions() {
         viewRole();
       } else if (answers.menu === "Add Role") {
         addRole();
+      } 
     });
 }
+
 //shows department table
 function viewDept() {
   connection.query("SELECT * FROM department", (err, res) => {
