@@ -26,7 +26,7 @@ function menuOptions() {
         choices: [
           "View All Departments",
           "Add Department",
-          "View All Roles",
+          "View all Roles",
           "Add Role",
           "View all Employees",
           "Add an Employee",
@@ -40,11 +40,14 @@ function menuOptions() {
         viewDept();
       } else if (answers.menu === "Add Department") {
         addDept();
-      } else if (answers.menu === "View All Employees") {
+      } else if (answers.menu === "View all Employees") {
         viewEmp();
       } else if (answers.menu === "Add an Employee") {
         addEmp();
-      }
+      } else if (answers.menu === "View all Roles") {
+        viewRole();
+      } else if (answers.menu === "Add Role") {
+        addRole();
     });
 }
 //shows department table
@@ -60,6 +63,15 @@ function viewDept() {
 //shows  table
 function viewEmp() {
   connection.query("SELECT * FROM employee", (err, res) => {
+    if (err) {
+      console.log(err);
+    }
+    console.table(res);
+    menuOptions();
+  });
+}
+function viewRole() {
+  connection.query("SELECT * FROM role", (err, res) => {
     if (err) {
       console.log(err);
     }
@@ -105,7 +117,7 @@ function addEmp() {
       },
       {
         type: "input",
-        name: "number",
+        name: "name",
         message: "What is the last name of the Employee?",
       },
     ])

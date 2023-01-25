@@ -12,7 +12,7 @@ VALUES (0001, "Sales"),
        (0004, "Legal");
 
 
-INSERT INTO role (id, title, salary, department_id)
+INSERT INTO role (id, title, salary,)
 VALUES (0001, "Sales Lead", 100000),
        (0002, "Salesperson", 80000),
        (0003, "Lead Engineer", 150000),
