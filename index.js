@@ -53,7 +53,7 @@ function menuOptions() {
         viewRole();
       } else if (answers.menu === "Add Role") {
         addRole();
-      } 
+      }
     });
 }
 
@@ -67,27 +67,7 @@ function viewDept() {
     menuOptions();
   });
 }
-//shows  table
-function viewEmp() {
-  connection.query("SELECT * FROM employee", (err, res) => {
-    if (err) {
-      console.log(err);
-    }
-    console.table(res);
-    menuOptions();
-  });
-}
-function viewRole() {
-  connection.query("SELECT * FROM role", (err, res) => {
-    if (err) {
-      console.log(err);
-    }
-    console.table(res);
-    menuOptions();
-  });
-}
 
-//adds a dept into the database
 function addDept() {
   inquirer
     .prompt([
@@ -112,8 +92,15 @@ function addDept() {
       });
     });
 }
-
-//adds role to the database
+function viewEmp() {
+  connection.query("SELECT * FROM employee", (err, res) => {
+    if (err) {
+      console.log(err);
+    }
+    console.table(res);
+    menuOptions();
+  });
+}
 function addEmp() {
   inquirer
     .prompt([
@@ -127,6 +114,19 @@ function addEmp() {
         name: "name",
         message: "What is the last name of the Employee?",
       },
+      {
+        type: "input",
+        name: "name",
+        message: "What is the employees role?",
+        choices: [
+          "Sales Person",
+          "Lead Engineer",
+          "Software Engineer",
+          "Account Manager",
+          "Accountant",
+          "Legal Team Lead",
+        ],
+      },
     ])
     .then((answers) => {
       connection.query("INSERT INTO employee SET ?", answers, (err, res) => {
@@ -138,3 +138,15 @@ function addEmp() {
       });
     });
 }
+
+function viewRole() {
+  connection.query("SELECT * FROM role", (err, res) => {
+    if (err) {
+      console.log(err);
+    }
+    console.table(res);
+    menuOptions();
+  });
+}
+
+//add role to the database
