@@ -67,7 +67,7 @@ function viewDept() {
     menuOptions();
   });
 }
-
+//function to add department
 function addDept() {
   inquirer
     .prompt([
@@ -92,6 +92,7 @@ function addDept() {
       });
     });
 }
+//handles the view employee
 function viewEmp() {
   connection.query("SELECT * FROM employee", (err, res) => {
     if (err) {
@@ -101,41 +102,47 @@ function viewEmp() {
     menuOptions();
   });
 }
+//questions for user
 function addEmp() {
   inquirer
     .prompt([
       {
         type: "input",
-        name: "name",
+        name: "firstName",
         message: "What is the first name of the Employee?",
       },
       {
         type: "input",
-        name: "name",
+        name: "lastName",
         message: "What is the last name of the Employee?",
       },
       {
-        type: "input",
-        name: "name",
+        type: "list",
+        name: "roleId",
         message: "What is the employees role?",
         choices: [
-          "Sales Person",
-          "Lead Engineer",
-          "Software Engineer",
-          "Account Manager",
-          "Accountant",
-          "Legal Team Lead",
+          { name: "Salesperson", value: 2 },
+          { name: "Lead Engineer", value: 3 },
+          { name: "Software Engineer", value: 4 },
+          { name: "Accountant", value: 6 },
+          { name: "Legal Team Lead", value: 7 },
         ],
       },
     ])
+    // handles information into employee set
     .then((answers) => {
-      connection.query("INSERT INTO employee SET ?", answers, (err, res) => {
-        if (err) {
-          console.log(err);
+      const { firstName, lastName, roleId } = answers;
+      connection.query(
+        "INSERT INTO employee SET first_name = ?, last_name = ?, role_id = ?",
+        [firstName, lastName, roleId],
+        (err, res) => {
+          if (err) {
+            console.log(err);
+          }
+          console.table(res);
+          menuOptions();
         }
-        console.table(res);
-        menuOptions();
-      });
+      );
     });
 }
 
@@ -150,3 +157,17 @@ function viewRole() {
 }
 
 //add role to the database
+function addRole() {
+  inquirer.prompt([
+    {
+      type: "input",
+      name: "title",
+      message: "What is the name of the role?",
+    },
+    {
+      type: "number",
+      name: "salary",
+      message: "What is the salary of the role?",
+    },
+  ]);
+}

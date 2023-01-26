@@ -1,53 +1,30 @@
-INSERT INTO
-    employee (
-        id,
-        first_name,
-        last_name,
-        role_id,
-        manager_id
-    )
-VALUES (
-        0001,
-        "Chris",
-        "Smith",
-        0200,
-        0200
-    ), (
-        0002,
-        "Toby",
-        "Mcguire",
-        0300,
-        0300
-    ), (
-        0003,
-        "Donna",
-        "Summer",
-        0400,
-        0400
-    ), (
-        0004,
-        "Charlie",
-        "Murphy",
-        0500,
-        0500
-    );
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
+VALUES (1, "Chris", "Smith", 200, 0200),
+       (2, "Toby", "Mcguire", 300, 0300),
+       (3, "Donna", "Summer", 400, 0400),
+       (4, "Charlie", "Murphy", 500, 0500);
 
-INSERT INTO
-    department (id, name)
-VALUES (0001, "Sales"), (0002, "Engineering"), (0003, "Finance"), (0004, "Legal");
 
-INSERT INTO
-    role (id, title, salary,)
-VALUES (0001, "Sales Lead", 100000), (0002, "Salesperson", 80000), (0003, "Lead Engineer", 150000), (
-        0004,
-        "Software Engineer",
-        120000
-    ), (
-        0005,
-        "Account Manager",
-        160000
-    ), (0006, "Accountant", 125000), (
-        0007,
-        "Leagl Team Lead",
-        250000
-    );
+INSERT INTO department (id, name)
+VALUES (1, "Sales"),
+       (2, "Engineering"),
+       (3, "Finance"), 
+       (4, "Legal");
+
+
+INSERT INTO role (id, title, salary)
+VALUES (1, "Sales Lead", 100000),
+       (2, "Salesperson", 80000),
+       (3, "Lead Engineer", 150000),
+       (4, "Software Engineer", 120000),
+       (5, "Account Manager", 160000),
+       (6, "Accountant", 125000),
+       (7, "Leagl Team Lead", 250000);
+
+
+
+
+      
+
+
+
