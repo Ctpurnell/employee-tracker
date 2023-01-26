@@ -158,16 +158,46 @@ function viewRole() {
 
 //add role to the database
 function addRole() {
-  inquirer.prompt([
-    {
-      type: "input",
-      name: "title",
-      message: "What is the name of the role?",
-    },
-    {
-      type: "number",
-      name: "salary",
-      message: "What is the salary of the role?",
-    },
-  ]);
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "title",
+        message: "What is the name of the role?",
+      },
+      {
+        type: "number",
+        name: "salary",
+        message: "What is the salary of the role?",
+      },
+      // This isn't working................................................
+      // {
+      //   type: "list",
+      //   name: "department_id",
+      //   message: "What department does the role belong to?",
+      //   choices: [
+      //     { name: "Engineering" },
+      //     { name: "Finance" },
+      //     { name: "Legal" },
+      //     { name: "Sales" },
+      //     { name: "Service" },
+      //   ],
+      // },
+    ])
+
+    //enters into role set
+    .then((answers) => {
+      const { title, salary } = answers;
+      connection.query(
+        "INSERT INTO role SET title = ?, salary = ?",
+        [title, salary],
+        (err, res) => {
+          if (err) {
+            console.log(err);
+          }
+          console.table(res);
+          menuOptions();
+        }
+      );
+    });
 }
