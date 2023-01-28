@@ -171,26 +171,26 @@ function addRole() {
         message: "What is the salary of the role?",
       },
       // This isn't working................................................
-      // {
-      //   type: "list",
-      //   name: "department_id",
-      //   message: "What department does the role belong to?",
-      //   choices: [
-      //     { name: "Engineering" },
-      //     { name: "Finance" },
-      //     { name: "Legal" },
-      //     { name: "Sales" },
-      //     { name: "Service" },
-      //   ],
-      // },
+      {
+        type: "list",
+        name: "departmentId",
+        message: "What department does the role belong to?",
+        choices: [
+          { name: "Engineering", value: 2 },
+          { name: "Finance", value: 3 },
+          { name: "Legal", value: 4 },
+          { name: "Sales", value: 1 },
+          { name: "Service", value: 5 },
+        ],
+      },
     ])
 
     //enters into role set
     .then((answers) => {
-      const { title, salary } = answers;
+      const { title, salary, departmentId } = answers;
       connection.query(
-        "INSERT INTO role SET title = ?, salary = ?",
-        [title, salary],
+        "INSERT INTO role SET title = ?, salary = ?, department_id = ?",
+        [title, salary, departmentId],
         (err, res) => {
           if (err) {
             console.log(err);

@@ -1,15 +1,16 @@
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES (1, "Chris", "Smith", 200, 0200),
-       (2, "Toby", "Mcguire", 300, 0300),
-       (3, "Donna", "Summer", 400, 0400),
-       (4, "Charlie", "Murphy", 500, 0500);
+VALUES (1, "Chris", "Smith", 200, 200),
+       (2, "Toby", "Mcguire", 300, 300),
+       (3, "Donna", "Summer", 400, 400),
+       (4, "Charlie", "Murphy", 500, 500);
 
 
 INSERT INTO department (id, name)
 VALUES (1, "Sales"),
        (2, "Engineering"),
        (3, "Finance"), 
-       (4, "Legal");
+       (4, "Legal"),
+       (5, "Service");
 
 
 INSERT INTO role (id, title, salary)
