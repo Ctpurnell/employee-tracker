@@ -170,7 +170,6 @@ function addRole() {
         name: "salary",
         message: "What is the salary of the role?",
       },
-      // This isn't working................................................
       {
         type: "list",
         name: "departmentId",
